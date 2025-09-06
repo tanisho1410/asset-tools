@@ -5,12 +5,12 @@
 [![Charts Update](https://github.com/tanisho1410/investment-disclosure-tools/actions/workflows/update-charts.yml/badge.svg)](https://github.com/tanisho1410/investment-disclosure-tools/actions/workflows/update-charts.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 📊 現在の統計 (Last Updated: 2025-01-01)
+## 📊 現在の統計 (Last Updated: 2025-09-06)
 
-- **現在資産額**: データ記録後に更新
-- **累計リターン**: データ記録後に更新
-- **追跡期間**: データ記録後に更新  
-- **感情記録**: データ記録後に更新
+- **総資産額**: ¥2,261,361 (13銘柄)
+- **評価損益**: +¥617,189 (+27.29%)
+- **主力銘柄**: eMAXIS Slim米国株式(S&P500) 49.3%
+- **感情記録**: 1エントリー (平均スコア: 3.0/5)
 
 ## 📊 機能概要
 
