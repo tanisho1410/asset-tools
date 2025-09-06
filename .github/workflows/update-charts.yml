@@ -1,0 +1,57 @@
+name: Update Investment Charts
+
+on:
+  schedule:
+    # 毎週月曜日の日本時間12:00 (UTC 3:00)に実行
+    - cron: '0 3 * * MON'
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  update-charts:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    
+    - name: Generate charts
+      run: |
+        python tools/chart_generator.py --generate-all --static-only
+        
+    - name: Generate monthly report
+      run: |
+        python tools/report_builder.py --auto-generate
+      
+    - name: Update README badges
+      run: |
+        # 最終更新日をREADMEに反映
+        sed -i "s/Last Updated: .*/Last Updated: $(date +'%Y-%m-%d')/" README.md
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add charts/ reports/ README.md
+        git diff --staged --quiet || git commit -m "📊 Auto-update charts and reports - $(date +'%Y-%m-%d')"
+        git push
+        
+    - name: Create summary comment
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        echo "## 📊 Chart Update Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- Charts generated: $(ls -1 charts/*.png | wc -l) static images" >> $GITHUB_STEP_SUMMARY  
+        echo "- Last update: $(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+        echo "- Triggered by: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
