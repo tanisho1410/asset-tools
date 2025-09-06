@@ -1,0 +1,8 @@
+{
+  "auto_backup": true,
+  "chart_style": "seaborn",
+  "default_currency": "JPY",
+  "timezone": "Asia/Tokyo",
+  "github_repo": "tanisho1410/investment-disclosure-tools",
+  "update_frequency": "weekly"
+}
