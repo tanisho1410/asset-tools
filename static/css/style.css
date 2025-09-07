@@ -1,0 +1,246 @@
+/* 投資分析ツール カスタムCSS */
+
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+}
+
+/* 全体のスタイル */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* ナビゲーション */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    transform: translateY(-1px);
+}
+
+/* カードコンポーネント */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    border-bottom: none;
+    font-weight: 600;
+}
+
+/* 統計カード */
+.card.bg-primary,
+.card.bg-success,
+.card.bg-danger,
+.card.bg-info,
+.card.bg-secondary {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #0056b3 100%) !important;
+}
+
+.card.bg-success {
+    background: linear-gradient(135deg, var(--bs-success) 0%, #146c43 100%) !important;
+}
+
+.card.bg-danger {
+    background: linear-gradient(135deg, var(--bs-danger) 0%, #b02a37 100%) !important;
+}
+
+.card.bg-info {
+    background: linear-gradient(135deg, var(--bs-info) 0%, #087990 100%) !important;
+}
+
+.card.bg-secondary {
+    background: linear-gradient(135deg, var(--bs-secondary) 0%, #495057 100%) !important;
+}
+
+/* ボタンスタイル */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-lg {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+}
+
+/* フォームスタイル */
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    transform: translateY(-1px);
+}
+
+/* テーブルスタイル */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+    transform: scale(1.01);
+}
+
+/* バッジスタイル */
+.badge {
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* アラートスタイル */
+.alert {
+    border: none;
+    border-radius: 12px;
+    border-left: 4px solid;
+}
+
+.alert-info {
+    border-left-color: var(--info-color);
+    background: linear-gradient(90deg, rgba(13, 202, 240, 0.1) 0%, rgba(13, 202, 240, 0.05) 100%);
+}
+
+.alert-warning {
+    border-left-color: var(--warning-color);
+    background: linear-gradient(90deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 193, 7, 0.05) 100%);
+}
+
+.alert-danger {
+    border-left-color: var(--danger-color);
+    background: linear-gradient(90deg, rgba(220, 53, 69, 0.1) 0%, rgba(220, 53, 69, 0.05) 100%);
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn-lg {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* 印刷スタイル */
+@media print {
+    .navbar,
+    .btn,
+    footer {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #dee2e6 !important;
+        break-inside: avoid;
+    }
+    
+    .text-white {
+        color: #000 !important;
+    }
+    
+    .bg-primary,
+    .bg-success,
+    .bg-danger,
+    .bg-info,
+    .bg-secondary {
+        background: #fff !important;
+        color: #000 !important;
+    }
+}
+
+/* プロットリーチャート調整 */
+.plotly-graph-div {
+    border-radius: 8px;
+}
+
+/* ローディングスピナー */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* カスタムスクロールバー */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

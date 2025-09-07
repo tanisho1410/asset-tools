@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}投資分析ツール - CSVアップロード{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- ヘッダー -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="fas fa-chart-line me-3"></i>
+                投資分析ツール
+            </h1>
+            <p class="lead text-muted">
+                CSVファイルをアップロードして、あなたの投資ポートフォリオを詳細分析
+            </p>
+        </div>
+
+        <!-- 機能紹介 -->
+        <div class="row mb-5">
+            <div class="col-md-4 text-center mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-pie-chart fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">資産配分分析</h5>
+                        <p class="card-text">投資信託・ETF・個別株の構成比を円グラフで可視化</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-chart-bar fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">パフォーマンス分析</h5>
+                        <p class="card-text">銘柄別リターン率・損益状況をバーチャートで表示</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-search-dollar fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">リアルタイム解説</h5>
+                        <p class="card-text">保有銘柄の最新価格・業績・投資判断を自動取得</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- アップロードセクション -->
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-upload me-2"></i>
+                    CSVファイルアップロード
+                </h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <div class="mb-4">
+                        <label for="file" class="form-label">
+                            <i class="fas fa-file-csv me-2"></i>
+                            ポートフォリオCSVファイルを選択
+                        </label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".csv" required>
+                        <div class="form-text">
+                            対応形式: SBI証券、楽天証券、マネックス証券のポートフォリオCSV
+                        </div>
+                        <div class="invalid-feedback">
+                            CSVファイルを選択してください
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-analytics me-2"></i>
+                            分析開始
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 対応証券会社 -->
+        <div class="mt-4">
+            <div class="card border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted mb-3">対応証券会社</h6>
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <span class="badge bg-light text-dark fs-6">SBI証券</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="badge bg-light text-dark fs-6">楽天証券</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="badge bg-light text-dark fs-6">マネックス証券</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注意事項 -->
+        <div class="alert alert-warning mt-4" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>注意:</strong> アップロードされたデータは一時的に処理されるのみで、サーバーに永続保存されることはありません。
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Form validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock %}
